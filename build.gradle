@@ -23,6 +23,10 @@ allprojects {
     }
 }
 
+ext {
+    githubUrl = 'https://github.com/nikita36078/mididriver'
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

@@ -1,0 +1,42 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'io.github.nikita36078'
+            artifactId = 'mididriver'
+            version = 'v1.30'
+
+            afterEvaluate {
+                from components.release
+            }
+
+            pom {
+                name = "mididriver"
+                description = "Android midi driver using Sonivox EAS library"
+                url = githubUrl
+                licenses {
+                    license {
+                        name = 'Apache License 2.0'
+                        url = 'https://www.apache.org/licenses/LICENSE-2.0'
+                        distribution = 'https://www.apache.org/licenses/LICENSE-2.0'
+                    }
+                }
+                developers {
+                    developer {
+                        name = 'billthefarmer'
+                    }
+                }
+                scm {
+                    connection = "${githubUrl}.git"
+                    url = githubUrl
+                }
+            }
+        }
+    }
+}
+
+signing {
+    sign(publishing.publications)
+}
